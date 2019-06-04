@@ -31,7 +31,7 @@ router.get ('/:id', (req, res) =>{
         if (err) {
     
           
-          res.status(500).send('Erreur lors de la récupération du question');
+          res.status(500).send('Erreur lors de la récupération de la question');
         } else {
     
           
@@ -48,7 +48,7 @@ router.post ('/', (req, res) =>{
         if (err) {
     
           
-          res.status(500).send('Erreur lors de la récupération du question');
+          res.status(500).send('Erreur lors de la récupération de la question');
         } else {
     
           

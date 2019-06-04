@@ -44,7 +44,7 @@ router.get ('/:id', (req, res) =>{
 
 router.post ('/', (req, res) =>{
 const formData = req.body;
-connection.query('INSERT INTO problem_origin ...SET ?', formData, (err, results) => {
+connection.query('INSERT INTO problem_origin SET ?', formData, (err, results) => {
 
     if (err) {
 
@@ -65,7 +65,7 @@ const idproblem_origin = req.params.id;
 const formData = req.body;
 
 
-connection.query('UPDATE problem SET ? WHERE id = ?', [formData, idproblem_origin], err => {
+connection.query('UPDATE problem_origin SET ? WHERE id = ?', [formData, idproblem_origin], err => {
 
   if (err) {
   
