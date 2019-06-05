@@ -12,11 +12,11 @@ router.use(bodyParser.urlencoded({
 
   
 router.get ('/', (req, res) =>{
-  connection.query('SELECT * FROM mycoachperso',(err, results)=> {
+  connection.query('SELECT * FROM main_theme',(err, results)=> {
      if(err){
         res.status(500).send('Erreur lors de la récuparation des données')
      }
-     else{
+     else {
        res.json(results)
      }
 
@@ -26,10 +26,10 @@ router.get ('/', (req, res) =>{
 
 router.post('/', (req, res) => {
   const formData = req.body;
-  connection.query('INSERT INTO text_static SET ? ', formData, (err, results)=> {
+  connection.query('INSERT INTO main_theme SET ? ', formData, (err, results)=> {
       if(err){
           console.log(err);
-          res.status(500).send("Erreur lors de la sauvegarde de d'un employee")
+          res.status(500).send("Erreur lors de la sauvegarde d'une valeur")
       }
       else{
           res.sendStatus(200)

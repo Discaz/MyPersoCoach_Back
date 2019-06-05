@@ -15,7 +15,7 @@ router.use(bodyParser.urlencoded({
 router.get ('/', (req, res) =>{
   connection.query('SELECT * FROM text_static',(err,results)=>{
     if(err){
-      res.status(500).send(' Erreur lors de la recuperation de la récupétation d`un texte`')
+      res.status(500).send(' Erreur lors de la recuperation de la récupération d`un texte`')
     }
     else{
       res.json(results)
@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
   connection.query('INSERT INTO text_static SET ? ', formData, (err, results)=> {
       if(err){
           console.log(err);
-          res.status(500).send("Erreur lors de la sauvegarde de d'un employee")
+          res.status(500).send("Erreur lors de la sauvegarde d'un texte")
       }
       else{
           res.sendStatus(200)

@@ -1,10 +1,11 @@
 const express = require('express')
 const bodyParser = require ('body-parser')
 const morgan = require('morgan')
+
 const routes = require('./routes/index')
 
 const app = express()
-const port = 3000
+const port = 3001
 
 app.use(morgan('dev'))
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
@@ -27,7 +28,7 @@ app.use("/entreprise", routes.entreprise)
 
 
 app.get('/', (req, res)=>{
-    res.status(200).send('Aceuil')
+    res.status(200).send('Acceuil')
 })
 
 
