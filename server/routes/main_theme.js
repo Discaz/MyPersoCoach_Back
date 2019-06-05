@@ -26,7 +26,7 @@ router.get ('/', (req, res) =>{
 
 router.post('/', (req, res) => {
   const formData = req.body;
-  connection.query('INSERT INTO text_static SET ? ', formData, (err, results)=> {
+  connection.query('INSERT INTO main_theme SET ?', formData, (err, results)=> {
       if(err){
           console.log(err);
           res.status(500).send("Erreur lors de la sauvegarde de d'un employee")
