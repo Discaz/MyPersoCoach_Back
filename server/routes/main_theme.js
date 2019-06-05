@@ -12,7 +12,7 @@ router.use(bodyParser.urlencoded({
 
   
 router.get ('/', (req, res) =>{
-  connection.query('SELECT * FROM mycoachperso',(err, results)=> {
+  connection.query('SELECT * FROM main_theme;',(err, results)=> {
      if(err){
         res.status(500).send('Erreur lors de la récuparation des données')
      }
