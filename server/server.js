@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 app.use("/login", routes.login)
 app.use("/main_theme", routes.main_theme)
 app.use("/problem", routes.problem)
-app.use("/question", routes.question)
+
 app.use("/problem_origin", routes.problem_origin)
 app.use("/text_static", routes.text_static)
 app.use("/summary", routes.summary)
