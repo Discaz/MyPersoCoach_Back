@@ -6,7 +6,7 @@ const connection = require('../config')
 
 
 router.get ('/', (req, res) =>{
-    connection.query('SELECT * FROM  problem_origin',(err, results) => {
+    connection.query(`select all_text, picture_src from problem_origin join text_static ts on problem_origin.text_static_id = ts.id join icon on problem_origin.icon_id = icon.id`,(err, results) => {
 
         if (err) {
    
@@ -23,7 +23,7 @@ router.get ('/', (req, res) =>{
 
 router.get ('/:id', (req, res) =>{
   const id = req.params.id;
-  connection.query('SELECT * FROM problem_origin',id,(err, results) => {
+  connection.query(`select all_text, picture_src from problem_origin join text_static ts on problem_origin.text_static_id = ts.id join icon on problem_origin.icon_id = icon.id where problem_origin.id = ${id}`,id,(err, results) => {
         
         if (err) {
     

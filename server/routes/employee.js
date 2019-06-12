@@ -8,8 +8,8 @@ const connection = require('../config')
 
 
   
-router.get ('/', (req, res) =>{
-  connection.query('SELECT * FROM employe',(err, results)=> {
+router.get ('/', (req, res) => {
+  connection.query('SELECT * FROM employee',(err, results)=> {
      if(err){
         res.status(500).send('Erreur lors de la récupération des données de la table entreprise')
      }
@@ -23,7 +23,7 @@ router.get ('/', (req, res) =>{
 
 router.get ('/:id', (req, res) =>{
     const id = req.params.id;
-    connection.query('SELECT * FROM  employe',id,(err, results) => {
+    connection.query('SELECT * FROM  employee',id,(err, results) => {
         if (err) {
           
           res.status(500).send('Erreur lors de la récupération des données de la table entreprise');
@@ -39,7 +39,7 @@ router.get ('/:id', (req, res) =>{
 
 router.post('/', (req, res) => {
   const formData = req.body;
-  connection.query('INSERT INTO employe SET ? ', formData, (err, results)=> {
+  connection.query('INSERT INTO employee SET ? ', formData, (err, results)=> {
       if(err){
           console.log(err);
           res.status(500).send("Erreur lors de la sauvegarde des données de la table entreprise")
@@ -59,11 +59,11 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
 
-const idemploye = req.params.id;
+const idemployee = req.params.id;
 const formData = req.body;
 
 
-connection.query('UPDATE employe SET ? WHERE id = ?', [formData, idemploye], err => {
+connection.query('UPDATE employee SET ? WHERE id = ?', [formData, idemployee], err => {
     if (err) {
     
       console.log(err);
@@ -79,9 +79,9 @@ connection.query('UPDATE employe SET ? WHERE id = ?', [formData, idemploye], err
 
 
 router.delete('/:id', (req, res) => {
-const idemploye = req.params.id;
+const idemployee = req.params.id;
 
-connection.query('DELETE FROM employe WHERE id = ?', [identreprise], err => {
+connection.query('DELETE FROM employe WHERE id = ?', [idemployee], err => {
   
     if (err) {
       console.log(err);

@@ -6,7 +6,7 @@ const connection = require('../config')
 
   
 router.get ('/', (req, res) =>{
-  connection.query('SELECT * FROM problem',(err, results)=> {
+  connection.query(`select all_text, picture_src from problem join text_static ts on problem.text_static_id = ts.id join icon on problem.icon_id = icon.id`,(err, results)=> {
      if(err){
         res.status(500).send('Erreur lors de la récupération des données de la table problem')
      }
@@ -20,7 +20,7 @@ router.get ('/', (req, res) =>{
 
 router.get ('/:id', (req, res) =>{
   const id = req.params.id;
-  connection.query('SELECT * FROM  problem', id,(err, results) => {
+  connection.query(`select all_text, picture_src from problem join text_static ts on problem.text_static_id = ts.id join icon on problem.icon_id = icon.id where problem.id = ${id}`, id,(err, results) => {
       if (err) {
       
         res.status(500).send('Erreur lors de la récupération données de la table problem');
@@ -48,10 +48,7 @@ router.post('/', (req, res) => {
   })
   
   
-})
-
-
-
+});
 
 
 

@@ -10,7 +10,7 @@ const icon = require ("./icon")
 const action = require ("./action")
 const manager = require ("./manager")
 const entreprise = require ("./entreprise")
-const employe = require ("./employee")
+const employee = require ("./employee")
 
 module.exports = { 
     login, 
@@ -24,4 +24,4 @@ module.exports = {
     action,
     manager,
     entreprise,
-    employe}
+    employee}

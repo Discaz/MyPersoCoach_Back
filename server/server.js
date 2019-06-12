@@ -25,7 +25,7 @@ app.use("/icon", routes.icon)
 app.use("/action", routes.action)
 app.use("/manager", routes.manager)
 app.use("/entreprise", routes.entreprise)
-app.use("/employee", routes.employe)
+app.use("/employee", routes.employee)
 
 app.get('/', (req, res)=>{
     res.status(200).send('Acceuil')
