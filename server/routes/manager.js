@@ -2,13 +2,7 @@ const express = require ('express');
 const router = express.Router();
 const connection = require('../config')
 
-const bodyParser = require('body-parser');
 
-
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({
-    extended: true 
-  }));
 
   
 router.get ('/', (req, res) =>{
@@ -19,6 +13,22 @@ router.get ('/', (req, res) =>{
      else{
        res.json(results)
      }
+
+  })
+
+});
+
+router.get ('/:id', (req, res) =>{
+  const id = req.params.id;
+  connection.query('SELECT * FROM manager',id,(err, results) => {
+      if (err) {
+        
+        res.status(500).send('Erreur lors de la récupération données de la table manager');
+      } 
+      else {
+        
+        res.json(results);
+      }
 
   })
 
@@ -39,22 +49,6 @@ router.post('/', (req, res) => {
   
 })
 
-
-
-router.get ('/:id', (req, res) =>{
-  connection.query('SELECT * FROM manager',(err, results) => {
-      if (err) {
-        
-        res.status(500).send('Erreur lors de la récupération données de la table manager');
-      } 
-      else {
-        
-        res.json(results);
-      }
-
-  })
-
-});
 
 
 router.put('/:id', (req, res) => {

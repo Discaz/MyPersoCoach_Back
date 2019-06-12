@@ -27,7 +27,7 @@ router.get ('/:id', (req, res) =>{
 const id = req.params.id;
   
   
-  connection.query('SELECT * FROM icon WHERE id= ?',id, (err,results)=>{
+  connection.query('SELECT picture_src, description_alt FROM icon WHERE id= ?',id, (err,results)=>{
     if(err){
       res.status(500).send(' Erreur lors de la récupération d`un icon`')
     }
