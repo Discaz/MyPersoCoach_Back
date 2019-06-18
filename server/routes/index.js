@@ -1,7 +1,6 @@
 const login = require("./login")
 const main_theme = require ("./main_theme")
 const problem = require ("./problem")
-
 const problem_origin = require ("./problem_origin")
 const text_static = require ("./text_static")
 const summary = require ("./summary")
@@ -24,4 +23,5 @@ module.exports = {
     action,
     manager,
     entreprise,
-    employee}
+    employee
+}

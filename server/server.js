@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require ('body-parser')
 const morgan = require('morgan')
 
@@ -12,6 +13,10 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 app.use(bodyParser.urlencoded ({ extended: false}))
 app.use(bodyParser.json())
+
+app.use(cors())
+
+
 
 app.use("/login", routes.login)
 app.use("/main_theme", routes.main_theme)
