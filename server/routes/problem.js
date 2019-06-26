@@ -6,7 +6,7 @@ const connection = require('../config')
 
   
 router.get ('/', (req, res) =>{
-  connection.query(`select all_text, picture_src from problem join text_static ts on problem.text_static_id = ts.id join icon on problem.icon_id = icon.id`,(err, results)=> {
+  connection.query(`select problem.id, all_text, picture_src from problem join text_static ts on problem.text_static_id = ts.id join icon on problem.icon_id = icon.id`,(err, results)=> {
      if(err){
         res.status(500).send('Erreur lors de la récupération des données de la table problem')
      }
