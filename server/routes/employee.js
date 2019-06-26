@@ -3,10 +3,6 @@ const router = express.Router();
 const connection = require('../config')
 
 
-
-
-
-
   
 router.get ('/', (req, res) => {
   connection.query('SELECT * FROM employee',(err, results)=> {
