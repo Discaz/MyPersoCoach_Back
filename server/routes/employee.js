@@ -4,10 +4,7 @@ const connection = require('../config')
 
 
 
-
-
-
-  
+ 
 router.get ('/', (req, res) => {
   connection.query('SELECT * FROM employee',(err, results)=> {
      if(err){
@@ -51,9 +48,6 @@ router.post('/', (req, res) => {
   
   
 })
-
-
-
 
 
 

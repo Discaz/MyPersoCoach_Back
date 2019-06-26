@@ -8,6 +8,9 @@ const routes = require('./routes/index')
 const app = express()
 const port = 3001
 
+
+app.use(cors())
+
 app.use(morgan('dev'))
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
