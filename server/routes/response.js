@@ -37,21 +37,31 @@ router.get ('/:id', (req, res) =>{
     });
     
 
-router.post ('/', (req, res) =>{
-    const formData = req.body;
-    connection.query('INSERT INTO response ...SET ?', formData, (err, results) => {
-
-        if (err) {
-    
-          
-          res.status(500).send('Erreur lors de la récupération de la response');
-        } else {
-    
-          
-          res.json(results);
-        }
+    router.post('/', (req, res) => {
+      const formData = {
+        response_summary: req.body.textarea,
+        summary_id: req.body.summary_id,
+        problem_id: req.body.problem_id,
+        problem_origin_id: req.body.problem_origin_id
+      }
+      console.log((formData))
+      //INSERT RECAP 
+      connection.query('INSERT INTO response SET ?', formData, (err, results)=> {
+          if(err){
+              console.log(err);
+              res.status(500).send("Erreur lors de la sauvegarde d'un texte")
+          }
+          else{
+              console.log((results))
+              //RECUP results.insertId:
+              //INSERT RESPONSE
+              res.status(200).send("okok")
+              
+          }
       })
-    });
+      
+    })
+    
     
     
     
