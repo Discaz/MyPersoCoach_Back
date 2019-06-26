@@ -17,6 +17,10 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(bodyParser.urlencoded ({ extended: false}))
 app.use(bodyParser.json())
 
+app.use(cors())
+
+
+
 app.use("/login", routes.login)
 app.use("/main_theme", routes.main_theme)
 app.use("/problem", routes.problem)
