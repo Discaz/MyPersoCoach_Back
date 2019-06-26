@@ -39,7 +39,7 @@ router.get ('/:id', (req, res) =>{
 
 router.post ('/', (req, res) =>{
     const formData = req.body;
-    connection.query('INSERT INTO response ...SET ?', formData, (err, results) => {
+    connection.query('INSERT INTO response SET ?', formData, (err, results) => {
 
         if (err) {
     
