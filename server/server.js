@@ -8,10 +8,6 @@ const routes = require('./routes/index')
 const app = express()
 const port = 3001
 
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
 app.use(cors())
 
 app.use(morgan('dev'))
