@@ -54,15 +54,16 @@ router.get ('/:id', (req, res) =>{
           else{
               console.log((results))
               //RECUP results.insertId:
+              const lastId = results.insertId
               //INSERT RESPONSE
-              res.status(200).send("okok")
+              res.status(200).send({lastResponseId: lastId})
+              console.log('coucou coucou lastresponseId',lastId)
               
           }
       })
       
     })
-    
-    
+
     
     
 router.put('/:id', (req, res) => {
