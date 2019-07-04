@@ -22,7 +22,7 @@ router.get ('/', (req, res) =>{
 
 router.get ('/:id', (req, res) =>{
   const id = req.params.id
-  connection.query('SELECT * FROM response',id,(err, results) => {
+  connection.query(`select response_summary, id from response where summary_id=${id}`,id,(err, results) => {
         
         if (err) {
     
