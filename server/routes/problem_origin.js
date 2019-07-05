@@ -6,7 +6,7 @@ const connection = require('../config')
 
 
 router.get ('/', (req, res) =>{
-    connection.query(`select all_text, picture_src from problem_origin join text_static ts on problem_origin.text_static_id = ts.id join icon on problem_origin.icon_id = icon.id`,(err, results) => {
+    connection.query(`select problem_origin.id, all_text, picture_src from problem_origin join text_static ts on problem_origin.text_static_id = ts.id join icon on problem_origin.icon_id = icon.id`,(err, results) => {
 
         if (err) {
    
