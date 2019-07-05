@@ -73,7 +73,7 @@ router.put('/:id', (req, res) => {
     const formData = req.body;
     
     
-    connection.query('UPDATE question SET ? WHERE id = ?', [formData, idresponse], err => {
+    connection.query('UPDATE response SET ? WHERE id = ?', [formData, idresponse], err => {
     
       if (err) {
         
