@@ -5,7 +5,7 @@ const connection = require('../config')
 
   
 router.get ('/', (req, res) =>{
-  connection.query('SELECT m.id, picture_src, t1.all_text AS all_text1, t2.all_text AS all_text2 FROM main_theme m LEFT JOIN text_static t1 on m.text_static_id = t1.id LEFT JOIN text_static t2 on m.text_modal_id = t2.id LEFT JOIN icon on m.icon_id = icon.id',(err, results)=> {
+  connection.query('SELECT m.id, picture_src, description_alt, t1.all_text AS all_text1, t2.all_text AS all_text2 FROM main_theme m LEFT JOIN text_static t1 on m.text_static_id = t1.id LEFT JOIN text_static t2 on m.text_modal_id = t2.id LEFT JOIN icon on m.icon_id = icon.id',(err, results)=> {
      if(err){
         res.status(500).send('Erreur lors de la récupération des données de la table main_theme')
      }

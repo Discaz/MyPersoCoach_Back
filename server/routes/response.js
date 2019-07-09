@@ -36,6 +36,23 @@ router.get ('/:id', (req, res) =>{
       })
     });
     
+    router.get ('/resp/:id', (req, res) =>{
+      const id = req.params.id
+      connection.query(`select response_summary from response where id=${id}`,id,(err, results) => {
+            
+            if (err) {
+        
+              
+              res.status(500).send('Erreur lors de la récupération de la response');
+            } else {
+        
+              
+              res.json(results);
+            }
+          })
+        });
+
+
 
     router.post('/', (req, res) => {
       const formData = {
@@ -53,7 +70,7 @@ router.get ('/:id', (req, res) =>{
           }
           else{
               console.log((results))
-              //RECUP results.insertId:
+              //RECUP results.insertId: allow us to get the ladt id of response
               const lastId = results.insertId
               //INSERT RESPONSE
               res.status(200).send({lastResponseId: lastId})
