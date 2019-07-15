@@ -61,9 +61,9 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
 
 const idaction = req.params.id;
-const formData = req.body;
+const formData = {date_echeance: req.body.date}
 
-connection.query('UPDATE action SET ? WHERE id = ?', [formData, idaction], err => {
+connection.query('UPDATE action SET ? WHERE summary_id = ?', [formData, idaction], err => {
     if (err) {
       
       console.log(err);
