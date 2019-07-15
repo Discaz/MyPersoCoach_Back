@@ -36,7 +36,12 @@ router.get ('/:id', (req, res) =>{
 
 
 router.post('/', (req, res) => {
-  const formData = req.body;
+ 
+  const formData = {
+    summary_id: req.body.summary_id,
+    text_response: req.body.text_response
+   }
+  
   connection.query('INSERT INTO action SET ? ', formData, (err, results)=> {
       if(err){
           console.log(err);
@@ -49,6 +54,7 @@ router.post('/', (req, res) => {
   
   
 })
+
 
 
 
