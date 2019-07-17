@@ -20,7 +20,7 @@ router.get ('/', (req, res) =>{
 
 router.get ('/:id', (req, res) =>{
   const id = req.params.id;
-  connection.query('SELECT * FROM  action',id,(err, results) => {
+  connection.query('SELECT text_response, DATE_FORMAT(date_echeance, "%d/%m/%Y") AS date FROM  action where id= ?',id,(err, results) => {
       if (err) {
        
         res.status(500).send('Erreur lors de la récupération données de la table action');
@@ -36,7 +36,7 @@ router.get ('/:id', (req, res) =>{
 
 router.get ('/recap/:id', (req, res) =>{
   const id = req.params.id;
-  connection.query('SELECT * FROM  action where summary_id= ?',id,(err, results) => {
+  connection.query('SELECT *, DATE_FORMAT(date_echeance, "%d/%m/%Y") FROM  action where summary_id= ?',id,(err, results) => {
       if (err) {
        
         res.status(500).send('Erreur lors de la récupération données de la table action');
@@ -49,6 +49,23 @@ router.get ('/recap/:id', (req, res) =>{
   })
 
 });
+
+// router.get ('/recap/date/:id', (req, res) =>{
+//   const id = req.params.id;
+//   connection.query('SELECT *, DATE_FORMAT(date_echeance, "%d/%m/%Y")FROM action where summary_id= ?',id,(err, results) => {
+//       if (err) {
+       
+//         res.status(500).send('Erreur lors de la récupération données de la table action');
+//       } 
+//       else {
+        
+//         res.json(results);
+//       }
+
+//   })
+
+// });
+
 
 router.post('/', (req, res) => {
  
@@ -63,7 +80,13 @@ router.post('/', (req, res) => {
           res.status(500).send("Erreur lors de la sauvegarde des données de la table action")
       }
       else{
-          res.sendStatus(200)
+        const respActionId = results.insertId
+        //INSERT RESPONSE
+        res.status(200).send({respActionId: respActionId})
+        console.log('coucou coucou lastresponseId',respActionId)
+        
+        
+       
       }
   })
   
