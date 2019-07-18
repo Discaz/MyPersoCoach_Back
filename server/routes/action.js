@@ -20,7 +20,7 @@ router.get ('/', (req, res) =>{
 
 router.get ('/:id', (req, res) =>{
   const id = req.params.id;
-  connection.query('SELECT * FROM  action',id,(err, results) => {
+  connection.query('SELECT text_response, DATE_FORMAT(date_echeance, "%d/%m/%Y") AS date FROM  action where id= ?',id,(err, results) => {
       if (err) {
        
         res.status(500).send('Erreur lors de la récupération données de la table action');
@@ -34,16 +34,59 @@ router.get ('/:id', (req, res) =>{
 
 });
 
+router.get ('/recap/:id', (req, res) =>{
+  const id = req.params.id;
+  connection.query('SELECT *, DATE_FORMAT(date_echeance, "%d/%m/%Y") FROM  action where summary_id= ?',id,(err, results) => {
+      if (err) {
+       
+        res.status(500).send('Erreur lors de la récupération données de la table action');
+      } 
+      else {
+        
+        res.json(results);
+      }
+
+  })
+
+});
+
+// router.get ('/recap/date/:id', (req, res) =>{
+//   const id = req.params.id;
+//   connection.query('SELECT *, DATE_FORMAT(date_echeance, "%d/%m/%Y")FROM action where summary_id= ?',id,(err, results) => {
+//       if (err) {
+       
+//         res.status(500).send('Erreur lors de la récupération données de la table action');
+//       } 
+//       else {
+        
+//         res.json(results);
+//       }
+
+//   })
+
+// });
+
 
 router.post('/', (req, res) => {
-  const formData = req.body;
+ 
+  const formData = {
+    summary_id: req.body.summary_id,
+    text_response: req.body.text_response
+   }
+  
   connection.query('INSERT INTO action SET ? ', formData, (err, results)=> {
       if(err){
           console.log(err);
           res.status(500).send("Erreur lors de la sauvegarde des données de la table action")
       }
       else{
-          res.sendStatus(200)
+        const respActionId = results.insertId
+        //INSERT RESPONSE
+        res.status(200).send({respActionId: respActionId})
+        console.log('coucou coucou lastresponseId',respActionId)
+        
+        
+       
       }
   })
   
@@ -52,24 +95,46 @@ router.post('/', (req, res) => {
 
 
 
+
 router.put('/:id', (req, res) => {
 
 const idaction = req.params.id;
-const formData = req.body;
+const formData = {date_echeance: req.body.date}
 
-connection.query('UPDATE action SET ? WHERE id = ?', [formData, idaction], err => {
+connection.query('UPDATE action SET ? WHERE summary_id = ? ', [formData, idaction], err => {
     if (err) {
       
       console.log(err);
       res.status(500).send("Erreur lors de la mise a jour des données de la table action");
     } else {
-      
+      console.log('cest mon resultat', res)
       res.sendStatus(200);
+      // res.status(200).send({lastResponseId: lastId})
     }
 
   });
 
 });
+
+// router.put('/backSubmit/:id', (req, res) => {
+
+//   const idaction = req.params.id;
+//   const formData = {date_echeance: req.body.date}
+  
+//   connection.query('UPDATE action SET ? WHERE summary_id = ? ', [formData, idaction], err => {
+//       if (err) {
+        
+//         console.log(err);
+//         res.status(500).send("Erreur lors de la mise a jour des données de la table action");
+//       } else {
+//         console.log('cest mon resultat', res)
+//         res.sendStatus(200);
+//         // res.status(200).send({lastResponseId: lastId})
+//       }
+  
+//     });
+  
+//   });
 
 
 router.delete('/:id', (req, res) => {
