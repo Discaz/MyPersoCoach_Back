@@ -35,41 +35,50 @@ router.get ('/:id', (req, res) =>{
 });
 
 router.post('/', (req, res) => {
-  const formData = req.body;
+  const formData = {
+    id: req.body.id,
+    problem_id: req.body.problem_id
+  }
   connection.query('INSERT INTO summary SET ? ', formData, (err, results)=> {
       if(err){
           console.log(err);
           res.status(500).send("Erreur lors de la sauvegarde des données de la table summary")
       }
       else{
-          res.sendStatus(200)
+        // results.insertId allows us to get last id inserted into summary table
+
+        const lastId = results.insertId
+        console.log(lastId);
+        res.status(200).send({summaryId: lastId})
+        console.log('coucou coucou',lastId)
       }
   })
-  
-  
 })
+
 
 
 
 router.put('/:id', (req, res) => {
 
-const idsummary = req.params.id;
-const formData = req.body;
-
-
-connection.query('UPDATE summary SET ? WHERE id = ?', [formData, idsummary], err => {
-    if (err) {
-      
-      console.log(err);
-      res.status(500).send("Erreur lors de la mise a jour des données de la table summary");
-    } else {
-      
-      res.sendStatus(200);
-    }
-
+  const idsummary = req.params.id;
+  const formData = {
+    problem_id: req.body.problem_id
+  }
+  
+  connection.query('UPDATE summary SET ? WHERE id = ?', [formData, idsummary], err => {
+      if (err) {
+        
+        console.log(err);
+        res.status(500).send("Erreur lors de la mise a jour des données de la table summary");
+      } else {
+        
+        res.sendStatus(200);
+        console.log({summaryId: formData.id})
+      }
+  
+    });
+  
   });
-
-});
 
 
 router.delete('/:id', (req, res) => {
