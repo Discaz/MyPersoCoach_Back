@@ -36,6 +36,8 @@ router.get ('/:id', (req, res) =>{
       })
     });
     
+ 
+ // get id response for first recap
     router.get ('/resp/:id', (req, res) =>{
       const id = req.params.id
       connection.query(`select response_summary from response where id=${id}`,id,(err, results) => {
