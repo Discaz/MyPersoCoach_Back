@@ -50,22 +50,6 @@ router.get ('/recap/:id', (req, res) =>{
 
 });
 
-// router.get ('/recap/date/:id', (req, res) =>{
-//   const id = req.params.id;
-//   connection.query('SELECT *, DATE_FORMAT(date_echeance, "%d/%m/%Y")FROM action where summary_id= ?',id,(err, results) => {
-//       if (err) {
-       
-//         res.status(500).send('Erreur lors de la récupération données de la table action');
-//       } 
-//       else {
-        
-//         res.json(results);
-//       }
-
-//   })
-
-// });
-
 
 router.post('/', (req, res) => {
  
@@ -94,8 +78,6 @@ router.post('/', (req, res) => {
 })
 
 
-
-
 router.put('/:id', (req, res) => {
 
 const idaction = req.params.id;
@@ -109,32 +91,13 @@ connection.query('UPDATE action SET ? WHERE summary_id = ? ', [formData, idactio
     } else {
       console.log('cest mon resultat', res)
       res.sendStatus(200);
-      // res.status(200).send({lastResponseId: lastId})
+      
     }
 
   });
 
 });
 
-// router.put('/backSubmit/:id', (req, res) => {
-
-//   const idaction = req.params.id;
-//   const formData = {date_echeance: req.body.date}
-  
-//   connection.query('UPDATE action SET ? WHERE summary_id = ? ', [formData, idaction], err => {
-//       if (err) {
-        
-//         console.log(err);
-//         res.status(500).send("Erreur lors de la mise a jour des données de la table action");
-//       } else {
-//         console.log('cest mon resultat', res)
-//         res.sendStatus(200);
-//         // res.status(200).send({lastResponseId: lastId})
-//       }
-  
-//     });
-  
-//   });
 
 
 router.delete('/:id', (req, res) => {
