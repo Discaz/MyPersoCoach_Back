@@ -70,13 +70,13 @@ router.get ('/:id', (req, res) =>{
               console.log(err);
               res.status(500).send("Erreur lors de la sauvegarde d'un texte")
           }
-          else{
+          else {
               console.log((results))
-              //RECUP results.insertId: allow us to get the ladt id of response
+              //RECUP results.insertId: allows us to get the last id of response
               const lastId = results.insertId
               //INSERT RESPONSE
               res.status(200).send({lastResponseId: lastId})
-              console.log('coucou coucou lastresponseId',lastId)
+              
               
           }
       })
