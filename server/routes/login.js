@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
             // Si l'on recoit un tableau vide
             // Les logins sont sans résultat
             // On retour false
-            if (results && results[0].length != 0) {
+            if (results && results[0] ) {
                 // On check si le mot de passe corresponds
                 const result = bcrypt.compareSync(req.body.password, results[0].password);
                 if (result) {
