@@ -20,7 +20,8 @@ router.get ('/', (req, res) =>{
 
 router.get ('/:id', (req, res) =>{
   const id = req.params.id;
-  connection.query('SELECT * FROM summary',id,(err, results) => {
+
+  connection.query('SELECT * FROM summary WHERE id= ?',id,(err, results) => {
       if (err) {
         
         res.status(500).send('Erreur lors de la récupération données de la table summary');
@@ -33,6 +34,8 @@ router.get ('/:id', (req, res) =>{
   })
 
 });
+
+
 
 router.post('/', (req, res) => {
   const formData = {

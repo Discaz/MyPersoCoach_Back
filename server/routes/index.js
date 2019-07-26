@@ -10,6 +10,7 @@ const action = require ("./action")
 const manager = require ("./manager")
 const entreprise = require ("./entreprise")
 const employee = require ("./employee")
+const getRecap = require("./getRecap")
 
 module.exports = { 
     login, 
@@ -23,5 +24,6 @@ module.exports = {
     action,
     manager,
     entreprise,
-    employee
+    employee,
+    getRecap
 }
